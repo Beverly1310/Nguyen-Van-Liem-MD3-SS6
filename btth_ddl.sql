@@ -117,8 +117,8 @@ begin
     into count_record
     from bookingdetail
     where roomid = NEW.roomid
-      and NEW.stardate between min_startdate and max_enddate
-    or  new.enddate between min_startdate and max_enddate;
+      and (NEW.stardate between min_startdate and max_enddate
+    or  new.enddate between min_startdate and max_enddate);
     if count_record > 0 then
         signal sqlstate '45000'
             set message_text = 'Phòng này đã có người đặt trong thời gian này, vui lòng chọn thời gian khác';
